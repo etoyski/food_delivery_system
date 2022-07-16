@@ -10,9 +10,6 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <!-- <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="./home.php">Home</a>
-        
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Active Orders</a>
         </li>
@@ -23,7 +20,7 @@
         <form class="container-fluid justify-content-end" >
         <a href="./login.php" class="btn btn-outline-primary btn-md active me-2" role="button" aria-pressed="true">Login</a>
         <a href="./signup.php" class="btn btn-outline-success btn-md active me-2" role="button" aria-pressed="true">Signup</a>
-  </form></li> --> 
+  </form></li> 
         </li>
       </ul>
     </div>
