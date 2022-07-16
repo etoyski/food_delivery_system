@@ -4,7 +4,7 @@
     <?php 
         session_start();
         if (!isset($_SESSION['username'])){
-          header('location:home.php');
+          header('location:login.php');
         }
     ?>
     <meta charset="utf-8">

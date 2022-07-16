@@ -19,7 +19,7 @@ $username = stripcslashes($username);
        
         $_SESSION['username'] = $name;
         echo '<alert> Login success </alert>';
-         header('location:home.php');
+         header('location:mainpage.php');
     }else{
         echo '<alert> Login fail </alert>';
          header('location:login.php');
