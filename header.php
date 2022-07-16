@@ -19,12 +19,12 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Activity Logs</a>
         </li>  -->
-        <li >
+        <!-- <li >
         <form class="container-fluid justify-content-end" >
         <a href="./login.php" class="btn btn-outline-primary btn-md active me-2" role="button" aria-pressed="true">Login</a>
         <a href="./signup.php" class="btn btn-outline-success btn-md active me-2" role="button" aria-pressed="true">Signup</a>
   </form>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
