@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php 
+  <?php 
         session_start();
         if (!isset($_SESSION['username'])){
           header('location:login.php');
@@ -14,7 +14,7 @@
   </head>
   <body>
   <h1>home</h1>
-    <h2> Welcme <?php echo $_SESSION['username']; ?></h2>
+    <h2> Welcome <?php echo $_SESSION['username']; ?></h2>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         
 

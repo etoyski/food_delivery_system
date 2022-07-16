@@ -5,12 +5,6 @@ error_reporting(0);
 ?>
   <head>
 	
-    <?php 
-        include ('header.php');
-        
-        echo $con ? '<h1>connected</h1>' : 'not connected';
-    ?>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Delivery</title>
@@ -51,14 +45,14 @@ error_reporting(0);
 									</p>
 								</div>
 			      	</div>
-							<form action="login-check.php" method="post"class="signin-form">
+							<form  action="<?php $_SERVER["PHP_SELF"];?>" method="post"class="signin-form">
 			      		<div class="form-group mb-3">
 			      			<label class="label" for="name">Username</label>
-			      			<input type="text" class="form-control" name="username" placeholder="Username"value="<?php echo $_GET['username']; ?>" required>
+			      			<input type="text" class="form-control" name="username" placeholder="Username" required>
 			      		</div>
 		            <div class="form-group mb-3">
 		            	<label class="label" for="password">Password</label>
-		              <input type="password" class="form-control"name="password" placeholder="Password" value="<?php echo $_GET['password']; ?>"required>
+		              <input type="password" class="form-control"name="password" placeholder="Password" required>
 		            </div>
 		            <div class="form-group">
 		            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
@@ -75,7 +69,40 @@ error_reporting(0);
 									</div>
 		            </div>
 		          </form>
-					        </div>
+				  <?php 
+if (isset($_POST['submit'])) {
+  
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+  
+    $check_user = "SELECT * FROM users WHERE username = '$username'";
+    $q= mysqli_query($conn,$check_user);
+    
+    while ($row = mysqli_fetch_array($q)){
+
+      $db_user = $row['username'];
+      $db_pw = $row['password'];
+      $user_id = $row['userID'];
+    }
+    if (empty($username) || empty ($password)){
+      echo "<script>alert('no inputs')</script>";
+    }else{
+      $enc_pw = hash("sha256",$password);
+if(($db_user == $username) && ($db_pw ==$enc_pw)){
+session_start();
+$_SESSION['logged'] =1;
+$_SESSION['username'] = $username;
+$_SESSION['userID'] = $user_id;
+header("Location:home.php");
+}else{
+  echo "<script>alert('not matched')</script>";
+}
+    }
+
+      }
+?>
+				
+				</div>
 		      </div>
 				</div>
 			</div>

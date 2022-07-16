@@ -1,28 +1,37 @@
-<?php 
-session_start();
-include ('./config/connection.php');
-
-$username =$_POST['username'];
-$password = $_POST['password'];
-
-$username = stripcslashes($username);  
-        $password = stripcslashes($password);  
-        $username = mysqli_real_escape_string($con, $username);  
-        $password = mysqli_real_escape_string($con, $password);  
-    $sql = "select * from users where username = '$username' and password = '$password'";
-
-    $result= mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-    $num =mysqli_num_rows($result);
-
-    if($num ==1){
+ <?php session_start();
+  
+   if (isset($_POST['submit'])) {
+     
+       $username = $_POST['username'];
+       $password = $_POST['password'];
+     
+       $check_user = "SELECT * FROM users WHERE username = '$username'";
+       $q= mysqli_query($conn,$check_user);
        
-        $_SESSION['username'] = $name;
-        echo '<alert> Login success </alert>';
-         header('location:home.php');
-    }else{
-        echo '<alert> Login fail </alert>';
-         header('location:login.php');
+       while ($row = mysqli_fetch_array($q)){
+   
+         $db_user = $row['username'];
+         $db_pw = $row['pass'];
+         $user_id = $row['UserID'];
+       }
+       if (empty($username) || empty ($password)){
+         echo "<script>alert('no inputs')</script>";
+       }else{
+         $enc_pw = hash("sha256",$password);
+   if(($db_user == $username) && ($db_pw ==$enc_pw)){
+   session_start();
+   $_SESSION['logged'] =1;
+   $_SESSION['username'] = $username;
+   $_SESSION['UserID'] = $user_id;
+   header("Location:home.php");
+   }else{
+     echo "<script>alert('not matched')</script>";
+   }
+       }
+   
+         }
+   
 
-    }
-?>
+
+
+?> 
